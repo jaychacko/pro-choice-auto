@@ -188,30 +188,66 @@
 
   /* ---- ABOUT ---- */
   .about { background: var(--bg2); }
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
   .about-visual {
-    position: relative; aspect-ratio: 4/5;
-    background: var(--bg3); border-radius: 4px; overflow: hidden;
+    display: flex; flex-direction: column; gap: 12px;
+    position: relative;
   }
-  .about-visual-inner {
+
+  /* Photo placeholder */
+  .av-photo {
+    position: relative; border-radius: 4px; overflow: hidden;
+    background: var(--bg3); border: 1px solid var(--border);
+    aspect-ratio: 16/9;
+  }
+  .av-photo-inner {
     width: 100%; height: 100%; display: flex; flex-direction: column;
-    align-items: center; justify-content: center; gap: 16px;
-    background: linear-gradient(135deg, #1a1a1a 0%, #222 100%);
+    align-items: center; justify-content: center; gap: 10px;
+    background: linear-gradient(135deg, #181818 0%, #242424 100%);
+    padding: 24px;
   }
-  .about-icon-big { font-size: 120px; opacity: 0.15; }
-  .about-accent {
+  .av-photo-icon { font-size: 52px; opacity: 0.4; }
+  .av-photo-label { font-family: var(--font-display); font-size: 18px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--gray); }
+  .av-photo-sub { font-size: 12px; color: var(--gray2); letter-spacing: 0.5px; }
+  .av-photo-overlay {
     position: absolute; bottom: 0; left: 0; right: 0;
-    background: var(--orange); padding: 20px 24px;
+    background: rgba(232,98,10,0.9); padding: 10px 16px;
+    font-size: 12px; font-weight: 600; letter-spacing: 1.5px;
+    text-transform: uppercase; display: flex; align-items: center; gap: 8px;
   }
-  .about-accent p { font-family: var(--font-display); font-size: 18px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
-  .about-accent span { font-size: 13px; opacity: 0.8; letter-spacing: 0.5px; }
-  .about-corner {
-    position: absolute; top: 20px; right: 20px;
-    background: var(--orange-dim); border: 1px solid rgba(232,98,10,0.3);
-    padding: 12px 16px; border-radius: 3px;
+
+  /* Stats grid */
+  .av-stats {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
   }
-  .about-corner p { font-family: var(--font-display); font-size: 28px; font-weight: 900; color: var(--orange); line-height: 1; }
-  .about-corner span { font-size: 11px; color: var(--gray); letter-spacing: 1px; text-transform: uppercase; }
+  .av-stat {
+    background: var(--bg3); padding: 18px 12px; text-align: center;
+    border: 1px solid var(--border); transition: border-color 0.2s;
+  }
+  .av-stat:hover { border-color: rgba(232,98,10,0.3); }
+  .av-stat-num {
+    font-family: var(--font-display); font-size: 32px; font-weight: 900;
+    color: var(--white); line-height: 1;
+  }
+  .av-stat-star { color: var(--orange); font-size: 22px; }
+  .av-stat-plus { color: var(--orange); font-size: 20px; }
+  .av-stat-label { font-size: 10px; color: var(--gray); letter-spacing: 1.2px; text-transform: uppercase; margin-top: 5px; }
+  .av-stat-highlight { background: var(--orange-dim); border-color: rgba(232,98,10,0.25); }
+  .av-stat-highlight .av-stat-num { color: var(--orange); }
+
+  /* Certification badges */
+  .av-badges { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .av-badge {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--bg3); border: 1px solid var(--border);
+    padding: 14px 16px; border-radius: 3px; transition: border-color 0.2s;
+  }
+  .av-badge:hover { border-color: rgba(232,98,10,0.3); }
+  .av-badge-icon { font-size: 22px; min-width: 28px; text-align: center; }
+  .av-badge div strong { display: block; font-size: 12px; font-weight: 700; letter-spacing: 0.3px; color: var(--white); }
+  .av-badge div span { font-size: 10px; color: var(--gray); letter-spacing: 0.5px; }
+  .av-badge-orange { border-color: rgba(232,98,10,0.25); background: var(--orange-dim); }
+  .av-badge-orange strong { color: var(--orange); }
   .about-text p { font-size: 16px; color: #bbb; line-height: 1.8; margin-bottom: 20px; }
   .about-features { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
   .about-feature { display: flex; align-items: flex-start; gap: 16px; }
@@ -458,7 +494,8 @@
     .hero { padding: 110px 20px 60px; }
     .hero-stats { gap: 28px; }
     .about-grid, .why-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
-    .about-visual { aspect-ratio: 3/2; }
+    .av-stats { grid-template-columns: repeat(4, 1fr); }
+    .av-badges { grid-template-columns: 1fr 1fr; }
     .why-cta-box { position: static; }
     .services-grid { grid-template-columns: 1fr; }
     .specials-grid { grid-template-columns: repeat(2, 1fr); }
@@ -474,6 +511,8 @@
     .specials-grid { grid-template-columns: 1fr; }
     .hero h1 { font-size: 48px; }
     .hero-stats { flex-direction: column; gap: 20px; }
+    .av-stats { grid-template-columns: repeat(2, 1fr); }
+    .av-badges { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -574,17 +613,71 @@
 <section class="about" id="about">
   <div class="about-grid reveal">
     <div class="about-visual">
-      <div class="about-visual-inner">
-        <div class="about-icon-big">🔧</div>
+
+      <!-- Photo placeholder -->
+      <div class="av-photo">
+        <div class="av-photo-inner">
+          <div class="av-photo-icon">🏪</div>
+          <p class="av-photo-label">Shop Photo Coming Soon</p>
+          <span class="av-photo-sub">1028 FM 1092 Rd · Missouri City, TX</span>
+        </div>
+        <div class="av-photo-overlay">
+          <span>📸</span> Add real shop photo here
+        </div>
       </div>
-      <div class="about-corner">
-        <p>4.8</p>
-        <span>Star Rating</span>
+
+      <!-- Stats grid -->
+      <div class="av-stats">
+        <div class="av-stat">
+          <div class="av-stat-num">4.8<span class="av-stat-star">★</span></div>
+          <div class="av-stat-label">Google Rating</div>
+        </div>
+        <div class="av-stat">
+          <div class="av-stat-num">43<span class="av-stat-plus">+</span></div>
+          <div class="av-stat-label">Reviews</div>
+        </div>
+        <div class="av-stat">
+          <div class="av-stat-num">10<span class="av-stat-plus">+</span></div>
+          <div class="av-stat-label">Years Experience</div>
+        </div>
+        <div class="av-stat av-stat-highlight">
+          <div class="av-stat-num">All</div>
+          <div class="av-stat-label">Makes & Models</div>
+        </div>
       </div>
-      <div class="about-accent">
-        <p>Owner-Operated Shop</p>
-        <span>Lee Ramos — Missouri City, TX</span>
+
+      <!-- Certification badges -->
+      <div class="av-badges">
+        <div class="av-badge">
+          <span class="av-badge-icon">🏆</span>
+          <div>
+            <strong>RepairPal Certified</strong>
+            <span>Fair Pricing Verified</span>
+          </div>
+        </div>
+        <div class="av-badge">
+          <span class="av-badge-icon">🚗</span>
+          <div>
+            <strong>CARFAX Service Shop</strong>
+            <span>Verified Service History</span>
+          </div>
+        </div>
+        <div class="av-badge">
+          <span class="av-badge-icon">🔧</span>
+          <div>
+            <strong>NAPA Partner</strong>
+            <span>Quality Parts Guaranteed</span>
+          </div>
+        </div>
+        <div class="av-badge av-badge-orange">
+          <span class="av-badge-icon">🎖️</span>
+          <div>
+            <strong>Veterans Discount</strong>
+            <span>Ask us about military pricing</span>
+          </div>
+        </div>
       </div>
+
     </div>
     <div class="about-text">
       <div class="section-label">About Us</div>
